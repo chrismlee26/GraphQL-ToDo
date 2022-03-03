@@ -10,6 +10,7 @@ type Query {
   getTodo(id: ID): Todo
   getAllTodos: [Todo!]!
   getCompletedTodos: [Todo!]!
+  getUnCompletedTodos: [Todo!]!
 }
 
 type Todo {
@@ -28,7 +29,7 @@ type Mutation {
 
 let todos = [
   { name: 'hardcode a todo', completed: true, id: '1' },
-  { name: 'make one mre', completed: false, id: '2' },
+  { name: 'false one for test', completed: false, id: '2' },
 ]
 
 // Resolvers
@@ -41,7 +42,7 @@ const root = {
   },
   addTodo: ({ name, id }) => {
     const createToDo = {
-      id: Math.floor(Math.random() * 100),
+      id,
       name,
       completed: false,
     }
@@ -68,6 +69,9 @@ const root = {
   },
   getCompletedTodos: () => {
     return todos.filter((value) => value.completed)
+  },
+  getUnCompletedTodos: () => {
+    return todos.filter((value) => !value.completed)
   },
 }
 

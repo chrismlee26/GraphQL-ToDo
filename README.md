@@ -98,6 +98,18 @@ mutation {
 
 - `completed` = `true` || `false`
 
+#### To query all completed Todo items, call `getAllTodos`:
+
+```
+{
+  getCompletedTodos {
+    name
+    id
+    completed
+  }
+}
+```
+
 ## GraphQL API Final Assessment:
 
 #### 1. To List All Todos:
@@ -114,15 +126,13 @@ mutation {
 
 #### 2. Add a new Todo:
 
-```
 mutation {
-  addTodo(name:"Complete the final assessment") {
-    id
-    name
-    completed
-  }
+addTodo(name:"Complete the final assessment" id:3) {
+id
+name
+completed
 }
-```
+}
 
 #### 3. Show the "Completed final assessment" todo:
 
@@ -138,11 +148,38 @@ mutation {
 
 #### 4. Complete the "Completed final assessment" todo:
 
-```
 mutation {
-  updateTodo(id: 1, completed: true) {
-    id
+addTodo(name:"Complete the final assessment" id:3) {
+id
+name
+completed
+}
+updateTodo(id: 3, completed: true) {
+id
+name
+completed
+}
+}
+
+#### 4. Show all Completed todos:
+
+```
+{
+  getCompletedTodos {
     name
+    id
+    completed
+  }
+}
+```
+
+#### 5. Show all un-completed todos:
+
+```
+{
+  getUnCompletedTodos {
+    name
+    id
     completed
   }
 }
