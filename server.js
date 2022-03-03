@@ -7,7 +7,6 @@ const { buildSchema } = require('graphql')
 const schema = buildSchema(`
 
 type Query {
-  getAbout: About
   getTodo(id: ID): Todo
   getAllTodos: [Todo!]!
   getCompletedTodos: [Todo!]!
@@ -16,17 +15,13 @@ type Query {
 type Todo {
   name: String!
   completed: Boolean!
-  id: ID!
+  id: ID
 }
 
 type Mutation {
-  addTodo(name: String!): Todo!
+  addTodo(name: String! id: Int, competed: Boolean): Todo!
   updateTodo(id: Int! name: String, completed: Boolean): Todo
-  completeToDo(id: Int! name: String, completed: Boolean): Todo
-}
-
-type About {
-  message: String!
+  completeToDo(id: Int name: String!, completed: Boolean): Todo
 }
 
 `)
@@ -38,14 +33,20 @@ let todos = [
 
 // Resolvers
 const root = {
-  getAbout: () => {
-    return { message: 'Hello World' }
-  },
   getTodo: ({ id }) => {
     return todos[id]
   },
   getAllTodos: () => {
     return todos
+  },
+  addTodo: ({ name, id }) => {
+    const createToDo = {
+      id: Math.floor(Math.random() * 100),
+      name,
+      completed: false,
+    }
+    todos.push(createToDo)
+    return createToDo
   },
   updateTodo: ({ id, name }) => {
     const todo = todos[id]
@@ -56,8 +57,8 @@ const root = {
     todo.completed = !todo.completed
     return todo
   },
-  completeToDo: ({ id, name }) => {
-    const todo = todos[id]
+  completeToDo: ({ name }) => {
+    const todo = todos.name
     if (todo === undefined) {
       return null
     }
@@ -65,7 +66,7 @@ const root = {
     todo.completed = !todo.completed
     return todo
   },
-  getCompletedTodos: (completed) => {
+  getCompletedTodos: () => {
     return todos.filter((value) => value.completed)
   },
 }

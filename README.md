@@ -88,7 +88,7 @@ mutation {
 
 ```
 mutation {
-  updateTodo(id: 1, completed: true) {
+  completeTodo(name, completed: true) {
     id
     name
     completed
@@ -97,3 +97,53 @@ mutation {
 ```
 
 - `completed` = `true` || `false`
+
+## GraphQL API Final Assessment:
+
+#### 1. To List All Todos:
+
+```
+{
+  getAllTodos {
+    name
+    id
+    completed
+  }
+}
+```
+
+#### 2. Add a new Todo:
+
+```
+mutation {
+  addTodo(name:"Complete the final assessment") {
+    id
+    name
+    completed
+  }
+}
+```
+
+#### 3. Show the "Completed final assessment" todo:
+
+```
+{
+  getCompletedTodos {
+    name
+    id
+    completed
+  }
+}
+```
+
+#### 4. Complete the "Completed final assessment" todo:
+
+```
+mutation {
+  updateTodo(id: 1, completed: true) {
+    id
+    name
+    completed
+  }
+}
+```
