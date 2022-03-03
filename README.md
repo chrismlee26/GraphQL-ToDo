@@ -3,20 +3,30 @@
 - FEW2.9 Final Assessment
 - GraphQL, Express, Nodemon
 
-#### Dependencies:
+## How to Run Project:
+
+#### Add Dependencies:
 
 ```
 npm i
 ```
 
-#### Run:
+#### Run Application:
 
 ```
 npm start
 ```
 
-#### View:
+#### View GraphQL Interface:
 
 ```
 http://localhost:4000/graphql
+```
+
+## GraphQL CRUD Operations
+
+- To access GraphQL Interface:
+
+```
+https://localhost:4000/graphql
 ```
