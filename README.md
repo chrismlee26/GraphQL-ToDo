@@ -161,7 +161,7 @@ completed
 }
 }
 
-#### 4. Show all Completed todos:
+#### 4. Show all Completed todos with `getCompletedTodos`:
 
 ```
 {
@@ -173,7 +173,7 @@ completed
 }
 ```
 
-#### 5. Show all un-completed todos:
+#### 5. Show all un-completed todos with `getUnCompletedTodos`:
 
 ```
 {
