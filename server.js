@@ -21,6 +21,7 @@ type Todo {
 
 type Mutation {
   addTodo(name: String!): Todo!
+  updateTodo(id: Int! name: String, Completed: Boolean): Todo
   completeToDo(id: ID, completed: Boolean): Todo
 }
 
@@ -45,15 +46,15 @@ const root = {
   getAllTodos: () => {
     return todos
   },
-  // updateTodo: ({ id, name }) => {
-  //   const todo = todos[id]
-  //   if (todo === undefined) {
-  //     return null
-  //   }
-  //   todo.name = name || todo.name
-  //   todo.completed = true || false
-  //   return todo
-  // }
+  updateTodo: ({ id, name }) => {
+    const todo = todos[id]
+    if (todo === undefined) {
+      return null
+    }
+    todo.name = name || todo.name
+    todo.completed = true || false
+    return todo
+  }
 }
 
 

@@ -30,3 +30,15 @@ http://localhost:4000/graphql
 ```
 https://localhost:4000/graphql
 ```
+
+#### To update a todo item, call item by 'id' and add a value to `name` or `completed`
+
+```
+mutation {
+  updateTodo(id: 1 name: "change it to number 2") {
+    id
+    name
+    completed
+  }
+}
+```
