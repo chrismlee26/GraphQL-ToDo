@@ -21,7 +21,7 @@ type Todo {
 
 type Mutation {
   addTodo(name: String!): Todo!
-  updateTodo(id: Int! name: String, Completed: Boolean): Todo
+  updateTodo(id: Int! name: String, completed: Boolean): Todo
   completeToDo(id: ID, completed: Boolean): Todo
 }
 
@@ -32,7 +32,7 @@ type About {
 
 let todos = [
   { name: 'hardcode a todo', completed: true, id: '1' },
-  { name: 'make one mre', completed: true, id: '2' },
+  { name: 'make one mre', completed: false, id: '2' },
 ]
 
 // Resolvers
@@ -52,7 +52,7 @@ const root = {
       return null
     }
     todo.name = name || todo.name
-    todo.completed = true || false
+    todo.completed = !todo.completed
     return todo
   }
 }
