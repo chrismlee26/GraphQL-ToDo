@@ -23,7 +23,7 @@ npm start
 http://localhost:4000/graphql
 ```
 
-## GraphQL CRUD Operations
+## GraphQL API Operations
 
 - To access GraphQL Interface:
 
@@ -31,14 +31,43 @@ http://localhost:4000/graphql
 https://localhost:4000/graphql
 ```
 
+#### To query one Todo item, call item by `id`:
+
+```
+{
+  getTodo(id:__#__) {
+    name
+    id
+    completed
+  }
+}
+```
+
+#### To query all Todo items, call `getAllTodos`:
+
+```
+{
+  getAllTodos {
+    name
+    id
+    completed
+  }
+}
+```
+
 #### To update a todo item, call item by 'id' and add a value to `name` or `completed`
 
 ```
 mutation {
-  updateTodo(id: 1 name: "change it to number 2") {
+  updateTodo(id: 1 name: "updated string") {
     id
     name
     completed
   }
 }
 ```
+
+`options`:
+
+- `name` = 'new string'
+- `completed` = `true` || `false`
