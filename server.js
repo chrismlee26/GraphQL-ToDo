@@ -3,7 +3,6 @@ const express = require('express')
 const { graphqlHTTP } = require('express-graphql')
 const { buildSchema } = require('graphql')
 
-
 // Create a schema
 const schema = buildSchema(`
 
@@ -11,6 +10,7 @@ type Query {
   getAbout: About
   getTodo(id: ID): Todo
   getAllTodos: [Todo!]!
+  getCompletedTodos: [Todo!]!
 }
 
 type Todo {
@@ -22,12 +22,13 @@ type Todo {
 type Mutation {
   addTodo(name: String!): Todo!
   updateTodo(id: Int! name: String, completed: Boolean): Todo
-  completeToDo(id: ID, completed: Boolean): Todo
+  completeToDo(id: Int! name: String, completed: Boolean): Todo
 }
 
 type About {
   message: String!
 }
+
 `)
 
 let todos = [
@@ -54,9 +55,20 @@ const root = {
     todo.name = name || todo.name
     todo.completed = !todo.completed
     return todo
-  }
+  },
+  completeToDo: ({ id, name }) => {
+    const todo = todos[id]
+    if (todo === undefined) {
+      return null
+    }
+    todo.name = name || todo.name
+    todo.completed = !todo.completed
+    return todo
+  },
+  getCompletedTodos: (completed) => {
+    return todos.filter((value) => value.completed)
+  },
 }
-
 
 // Create Express App
 const app = express()

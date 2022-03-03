@@ -55,11 +55,23 @@ https://localhost:4000/graphql
 }
 ```
 
+#### To query all Todo items, call `getCompletedTodos`:
+
+```
+{
+  getCompletedTodos {
+    name
+    id
+    completed
+  }
+}
+```
+
 #### To update a todo item, call item by 'id' and add a value to `name` or `completed`
 
 ```
 mutation {
-  updateTodo(id: 1 name: "updated string") {
+  updateTodo(id: 1, name: "updated string") {
     id
     name
     completed
@@ -70,4 +82,18 @@ mutation {
 `options`:
 
 - `name` = 'new string'
+- `completed` = `true` || `false`
+
+#### To complete a todo item, call item by 'id' and add `true` value to `completed`
+
+```
+mutation {
+  updateTodo(id: 1, completed: true) {
+    id
+    name
+    completed
+  }
+}
+```
+
 - `completed` = `true` || `false`
